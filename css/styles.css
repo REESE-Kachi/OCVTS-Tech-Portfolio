@@ -24,3 +24,19 @@ h3 {
     color: #475569;
     font-weight: 600;
 }
+
+a {
+    color: var(--primary #2e0bf5);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #f59e0b;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #d18809;
+    text-decoration: underline;
+    transition:  #1d1d1d 0.3s ease;
+ }
