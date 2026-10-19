@@ -6,16 +6,21 @@ body {
     line-height: 1.6;
 }
 
+html {
+    font-size: 16px;
+}
+
 h1, h2, h3 {
-    font-family: Georgia, serif
+     font-family:'Georgia', 'Times New Roman', serif;
 }
 
 h1 {
-    color: #2563eb;
     font-size: 2.5rem;
+    color: #2563eb;
 }
 
 h2 {
+    font-size: 2rem; 
     color: #1e40af;
     margin-bottom: 20px;
     margin-top: 0
@@ -24,6 +29,10 @@ h2 {
 h3 {
     color: #475569;
     font-weight: 600;
+}
+
+p {
+    font-size: 1rem;
 }
 
 a {
@@ -50,7 +59,7 @@ section {
 
 nav { 
     padding: 15px 0;
-
+    font-family: 'Courier New',monospace;
 }
 
 aside { 
@@ -59,6 +68,7 @@ aside {
 }
 
 .project-card { 
+    font-family: 'Courier New',monospace;
     border: 1px solid #c4c4c4;
     border-radius: 8px;
 }
