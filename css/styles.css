@@ -69,20 +69,67 @@ aside {
     padding-left: 20px;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th {
+    background: var(--primary); 
+    color: rgb(209, 209, 209);
+    tr:nth-child(even) { background: #f1f5f9; }
+}
+
+th, td {
+padding: 14px 18px;
+text-align: left;
+}
+
+
 .project-card { 
     font-family: 'Courier New',monospace;
-    border: 1px solid #c4c4c4;
+    border: 1px solid #9e3a3a;
     border-radius: 8px;
 }
 
 image {
-    border: 1px solid #cbd5e1;
+    border: 1px solid #346aac;
     border-radius: 6px;
 }
-<div class="container">
+
 .container { 
     max-width: 1100px;
-    margin: 0;
-    padding: 0 20px;
+    margin: 0px;
+    padding: 20px;
 }
-</div>
+
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.skills-list li { 
+    background: var(--primary);
+    color: white;
+}
+
+.timeline { 
+    list-style: none; 
+    counter-reset: year;
+
+
+}
+.timeline li {
+    padding-left: 40px;
+    border-left: 3px solid var(--primary);
+    margin-bottom: 20px;
+
+}
+
+.timeline li ::before  {
+    counter-increment: year to add numbered circles;
+    }
