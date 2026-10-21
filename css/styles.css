@@ -4,10 +4,19 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.8;
+    background: linear-gradient(right, #f8fafc, #c9dbf1)
+}
+
+header { background: linear-gradient(135deg, #a9bce6 0%,
+#f6f6f7 100%); 
 }
 
 html {
     font-size: 16px;
+}
+
+footer {
+     background: linear-gradient(right, #9f8bdb, #8675b8)
 }
 
 h1, h2, h3 {
@@ -38,6 +47,7 @@ p {
 a {
     color: var(--primary #2e0bf5);
     text-decoration: underline;
+    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -82,13 +92,14 @@ aside {
 table {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 
 th {
     background: var(--primary); 
     color: rgb(209, 209, 209);
-    tr:nth-child(even) { background: #f1f5f9; }
+    tr:nth-child(even) { background: #f1f5f9; };
 }
 
 th, td {
@@ -96,11 +107,21 @@ padding: 14px 18px;
 text-align: left;
 }
 
+form {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+button {
+    background: 0.3s; 
+    transform: 0.2s;
+ }
 
 .project-card { 
     font-family: 'Courier New',monospace;
     border: 1px solid #9e3a3a;
     border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 0.3s;
 }
 
 image {
@@ -143,3 +164,11 @@ image {
 .timeline li ::before  {
     counter-increment: year to add numbered circles;
     }
+
+.project-card { 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    }
+
+.profile-img { 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
