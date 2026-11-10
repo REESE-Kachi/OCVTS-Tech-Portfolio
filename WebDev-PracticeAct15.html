@@ -1,4 +1,4 @@
-<!-- Chapter 15 -->
+<!-- Chapter 16 -->
  <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -60,6 +60,7 @@
         <search id="skills">
         <h2>My Skills</h2>
         <h3>Technical Skills</h3>
+        <p>Experience: <span id="expYears">0</span>+ years</p> <!-- HERE -->
         <ul>
             <li>HTML</li>
             <li>CSS<ul>(Flexbox)</ul></li>
@@ -79,7 +80,7 @@
     <main>
 
     <section id="projects">
-        <h2>My Projects</h2>
+        <h2>My Projects <span id="projectCountBadge" class="badge">0</span></h2>
         <div class="project-grid">
             <h3>WebDev-PracticeActs</h3>
             <!-- Project cards with images --->
@@ -93,6 +94,7 @@
             <p>It was a simple html page with some text and images.</p>
         <p>This is my first year of web development.</p>
         <p>So not counting what I have done in other classes out side of this I have done nothing yet.</p>
+        <p>The Count: 4</p>
         <table> 
             <thead>
                 <tr>
@@ -163,7 +165,8 @@
             <a href="mailto:gunnar.yoshi.reese@gmail.com">Email</a>
             <a href="javascript:window.print()">Print this page</a>
             <a href="#" onclick="alert('Coming soon!')">#</a>
-            </footer>
+            <form onsubmit="return validateForm()"></form>
+        </footer>
         </section>
     <!-- Navigation -->
     <header>
@@ -202,6 +205,39 @@
             });
         }
 
+        function calculateExperience(startYear = 2023) {
+            const currentYear = new Date().getFullYear();
+            const currentMonth = new Date().getMonth();
+            const totalMonths = (currentYear - startYear) * 12 + currentMonth;
+            return {
+                years: Math.floor(totalMonths / 12),
+                months: totalMonths % 12
+            };
+        }
+        
+        const projectCount = document.querySelectorAll('#projects table tbody tr').length;
+        document.getElementById('projectCountBadge').textContent = projectCount;
+function validateForm() {
+    const value = document.getElementById('someInput').value;
+    value.trim(Gunnar);
+    value.trim(Reeser);
+    value.trim(gunnar.yoshi.reese@gmail.com);
+    if (value.trim() === '') {
+        alert('Please fill in all required fields.');
+        return false;
+    }
+    
+    if (value.trim() === 'gunnar.yoshi.reese@gmail.com') {
+        alert('Message Sent!');
+        return false;
+    }
+    
+    if (value.length === 10) {
+        alert('Tthere is exactly 10 characters here.');
+        return false;
+    }
+    return true;
+}
     </script>
 <tr>
 <td><button onclick="sayHello()">The end</button></td>
