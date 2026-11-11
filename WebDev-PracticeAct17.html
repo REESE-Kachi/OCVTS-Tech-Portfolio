@@ -1,4 +1,4 @@
-<!-- Chapter 16 -->
+<!-- Chapter 17 -->
  <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -61,7 +61,7 @@
         <h2>My Skills</h2>
         <h3>Technical Skills</h3>
         <p>Experience: <span id="expYears">0</span>+ years</p> <!-- HERE -->
-        <ul>
+        <ul id="skillsList">
             <li>HTML</li>
             <li>CSS<ul>(Flexbox)</ul></li>
             <li>JavaScript</li>
@@ -84,7 +84,13 @@
         <div class="project-grid">
             <h3>WebDev-PracticeActs</h3>
             <!-- Project cards with images --->
-             </div>
+             <select onchange="filterProjects(this.value)">
+                <option value="all">All</option>
+                <option value="web">Web</option>
+                <option value="app">App</option>
+            </select>
+            
+            </div>
              <table>
                 <figure>I really</figure>  <img src="https://kitchenfunwithmy3sons.com/wp-content/uploads/2020/02/fluffy-cow-1-scaled.jpg" title="A baby brown cow laying in grass" width="200" height="200"><figcaption>This true form of a placeholder</figcaption>
                 <figure>Dont have</figure> <img src="https://kitchenfunwithmy3sons.com/wp-content/uploads/2020/02/fluffy-cow-1-scaled.jpg" title="Again, a baby brown cow laying in grass" width="200" height="200"><figcaption>A placeholder that cant be matched</figcaption>
@@ -176,7 +182,36 @@
     <footer>
 
  <script>
-        console.log("Gunnar's Portfolio!");
+       let isDark = false;
+       
+       const extraSkills = ["JavaScript", "React", "Node.js", "Git"];
+       const skillsList = document.getElementById("skillsList");
+       extraSkills.forEach(skill => {
+           const listItem = document.createElement("li");
+           listItem.textContent = skill;
+           skillsList.appendChild(listItem);
+       });
+        
+ function filterProjects(category) {
+          const projectCards = document.querySelectorAll(".project-card");
+          const categoryFilters = {
+              web: card => card.dataset.category === 'web' || card.classList.contains('web'),
+              app: card => card.dataset.category === 'app' || card.classList.contains('app')
+          };
+          const matchesCategory = categoryFilters[category];
+
+          projectCards.forEach(card => {
+              card.style.display = !matchesCategory || matchesCategory(card) ? 'block' : 'none';
+          });
+
+          if (matchesCategory) {
+              console.log(`Filtering for ${category} projects`);
+          } else {
+              console.warn(`Unexpected project category "${category}"; showing all projects.`);
+          }
+    }
+
+       console.log("Gunnar's Portfolio!");
         console.table(["one thing", "two thing", "three thing"]);
         console.warn("The hammers are pressed into a press to press them into a pressed shape.");
         
@@ -221,7 +256,7 @@ function validateForm() {
     const value = document.getElementById('someInput').value;
     value.trim(Gunnar);
     value.trim(Reeser);
-    value.trim(gunnar.yoshi.reese@gmail.com);
+    value.trim(gunnar.yoshi.reesegmail.com);
     if (value.trim() === '') {
         alert('Please fill in all required fields.');
         return false;
@@ -238,12 +273,32 @@ function validateForm() {
     }
     return true;
 }
+
+
+function toggleTheme() {
+    const isDark = localStorage.getItem('theme') !== 'dark';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    applyTheme(isDark);
+}
+
+function applyTheme(isDark) {
+    if (isDark) {
+        document.body.style.backgroundColor = '#1e293b';
+        document.body.style.color = '#f8fafc';
+    } else {
+        document.body.style.backgroundColor = '';
+        document.body.style.color = '';
+    }
+}
+
+applyTheme(localStorage.getItem('theme') === 'dark');
     </script>
 <tr>
 <td><button onclick="sayHello()">The end</button></td>
 <td><button onclick="Hide()">The hidden</button></td>
 <td><button onclick="Print()">The printer</button></td>
 <td><button onclick="Clear()">The cleaner</button></td>
+<td><button onclick="toggleTheme()">Toggle Theme</button></td>
 </tr>
  
 <p>&copy; <span id="year">5/15/2026</span> Gunnar R.</p>
