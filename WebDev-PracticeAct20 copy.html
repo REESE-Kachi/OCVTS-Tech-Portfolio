@@ -171,6 +171,8 @@
             <a href="mailto:gunnar.yoshi.reese@gmail.com">Email</a>
             <a href="javascript:window.print()">Print this page</a>
             <a href="#" onclick="alert('Coming soon!')">#</a>
+            <h1 id="welcome"></h1>
+            <p>Tip of the Visit: <span id="visitTip"></span></p>
             <form onsubmit="return validateForm()"></form>
         </footer>
         </section>
@@ -184,6 +186,40 @@
  <script>
        let isDark = false;
       
+       // Add to your script
+        setTimeout(() => {
+            document.getElementById("welcome").textContent = "Welcome to Gunnar's Portfolio!";
+        }, 1000);
+        const visitTips = [
+            "Explore the projects section to see my work.",
+            "Use the navigation links to jump between sections.",
+            "Feel free to get in touch through the contact form."
+        ];
+        
+        let visitTipIndex = 0;
+        const visitTipElement = document.getElementById("visitTip");
+        visitTipElement.textContent = visitTips[visitTipIndex];
+        setInterval(() => {
+            visitTipIndex = (visitTipIndex + 1) % visitTips.length;
+            visitTipElement.textContent = visitTips[visitTipIndex];
+        }, 10000);
+        if (welcome = 1000) {
+           alert("Welcome to Gunnar's Portfolio!");
+        }
+        
+        event.preventDefault()
+        element.scrollIntoView({'smooth': true});
+
+        offsetHeight = 10;
+        const aboutElement = document.getElementById("about");
+            aboutElement.scrollIntoView();
+
+        const projectsElement = document.getElementById("projects");
+            projectsElement.scrollIntoView();
+
+        const contactElement = document.getElementById("contact");
+            contactElement.scrollIntoView();
+
        const projects = [/* your array */];
        const previousFeaturedProject = Number(sessionStorage.getItem("previousFeaturedProject"));
        const availableProjectIndexes = projects
@@ -250,6 +286,19 @@
         }
         
         function Print() {
+            const printStyles = document.createElement("style");
+            printStyles.textContent = `
+                @media print {
+                    body {
+                        color: black !important;
+                        background: white !important;
+                    }
+                    nav, button {
+                        display: none !important;
+                    }
+                }
+            `;
+            document.head.appendChild(printStyles);
             window.print();
         }
     
