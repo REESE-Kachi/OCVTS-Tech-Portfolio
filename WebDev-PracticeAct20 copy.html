@@ -1,4 +1,4 @@
-<!-- Chapter 20 -->
+<!-- Chapter 21 -->
  <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -131,7 +131,8 @@
             <form action="#" method="post">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
-            <textarea name="message" rows="5" placeholder="List ten cool facts about your self or more contact info." required></textarea>
+            <textarea id="message" maxlength="500"></textarea>
+                <p><span id="charCount">0</span> / 500</p>
             <button type="submit">Send Message 🚀</button>
             <button type="button">Clear Form</button>
             <button type="button" onclick="window.print()">Print</button>
@@ -185,6 +186,15 @@
 
  <script>
        let isDark = false;
+
+       const messageTextarea = document.getElementById("message");
+       messageTextarea.addEventListener("input", function () {
+           const charCount = document.querySelector("#charCount");
+           const submitButton = document.querySelector('button[type="submit"]');
+           charCount.textContent = this.value.length;
+           charCount.style.color = this.value.length > 450 ? "red" : "";
+           submitButton.disabled = this.value.length >= 500;
+       });
       
        // Add to your script
         setTimeout(() => {
@@ -220,7 +230,69 @@
         const contactElement = document.getElementById("contact");
             contactElement.scrollIntoView();
 
-       const projects = [/* your array */];
+       const projects = [
+           {
+               title: "WebDev-PracticeAct1",
+               description: "My first project in web development, a simple HTML page with text and images.",
+               image: "https://kitchenfunwithmy3sons.com/wp-content/uploads/2020/02/fluffy-cow-1-scaled.jpg",
+               category: "web"
+           },
+           {
+               title: "WebDev-PracticeAct2",
+               description: "A web development practice project.",
+               image: "https://kitchenfunwithmy3sons.com/wp-content/uploads/2020/02/fluffy-cow-1-scaled.jpg",
+               category: "web"
+           },
+           {
+               title: "WebDev-PracticeAct3",
+               description: "A web development practice project.",
+               image: "https://kitchenfunwithmy3sons.com/wp-content/uploads/2020/02/fluffy-cow-1-scaled.jpg",
+               category: "web"
+           }
+       ];
+       
+       const projectGrid = document.querySelector(".project-grid");
+       const container = document.createElement("div");
+       container.className = "project-cards";
+       projectGrid.appendChild(container);
+       container.innerHTML = '';
+
+       const projectsPerBatch = 3;
+       let renderedProjectCount = 0;
+       const loadMoreButton = document.createElement('button');
+       loadMoreButton.type = 'button';
+       loadMoreButton.textContent = 'Load More';
+       loadMoreButton.addEventListener('click', renderProjectBatch);
+       projectGrid.appendChild(loadMoreButton);
+
+       function renderProjectBatch() {
+           const nextProjects = projects.slice(renderedProjectCount, renderedProjectCount + projectsPerBatch);
+           nextProjects.forEach(project => {
+           const card = document.createElement('div');
+           card.className = 'project-card';
+           card.dataset.category = project.category;
+
+           const image = document.createElement('img');
+           image.src = project.image;
+           image.alt = project.title;
+
+           const title = document.createElement('h3');
+           title.textContent = project.title;
+
+           const description = document.createElement('p');
+           description.textContent = project.description;
+
+           card.appendChild(image);
+           card.appendChild(title);
+           card.appendChild(description);
+           container.appendChild(card);
+           });
+           renderedProjectCount += nextProjects.length;
+           loadMoreButton.hidden = renderedProjectCount >= projects.length;
+       }
+
+       renderProjectBatch();
+
        const previousFeaturedProject = Number(sessionStorage.getItem("previousFeaturedProject"));
        const availableProjectIndexes = projects
            .map((_, index) => index)
@@ -379,6 +451,23 @@ setInterval(() => {
     document.getElementById("timeOnSite").textContent =
         `${minutes}:${String(seconds).padStart(2, "0")}`;
 }, 1000);
+
+
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', () => {
+    sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) {
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const matchingLink = document.querySelector(`nav a[href="#${section.id}"]`);
+            if (matchingLink) {
+                matchingLink.classList.add('active');
+            }
+        }
+    });
+});
 
     </script>
 <tr>
